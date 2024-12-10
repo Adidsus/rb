@@ -191,7 +191,8 @@ workspace.ChildAdded:Connect(function(child)
 end)
 
 
-elseif placeId == lobby then
+--elseif placeId == lobby then
+else  
 local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
 local player = game.Players.LocalPlayer
 local lobbyList = player.PlayerGui.MainGui.LobbyListFrame.Content.LobbyList
