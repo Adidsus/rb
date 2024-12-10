@@ -278,6 +278,9 @@ print("Map changed")
 local buttonsFrame = mainGui.CurrentLobby.Lobby.Buttons
 
 local function clickStartButton()
+    print("Startfunc")
+    local buttonsFrame = mainGui.CurrentLobby.Lobby.Buttons
+
     for _, frame in pairs(buttonsFrame:GetChildren()) do
         print(frame)
         if frame:IsA("Frame") and frame.Name == "Frame" then
@@ -287,9 +290,9 @@ local function clickStartButton()
                     print("Znaleziono przycisk:", child.Name)  -- Sprawdzamy, który przycisk został znaleziony
                     print(child.Text)
                     if  child.Text == "Start" then
-                    --     FireSignal(child)
+                        FireSignal(child)
                     --     print("Znaleziono Public, aktywowanie...")
-                        child.MouseButton1Click:Fire()
+                        -- child.MouseButton1Click:Fire()
                     --     return true  -- Zwracamy true, gdy przycisk Public zostanie kliknięty
                     end
                 end
