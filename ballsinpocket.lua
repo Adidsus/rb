@@ -273,6 +273,8 @@ end
 task.wait(0.2)
 
 ChangeMap()
+print("Map changed")
+
 local buttonsFrame = mainGui.CurrentLobby.Lobby.Buttons
 
 local function clickStartButton()
