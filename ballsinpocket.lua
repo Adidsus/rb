@@ -3,6 +3,7 @@ local TheGame = 123456789
 local lobby = 18517861463
 
 if placeId == TheGame then
+    task.wait(5)
    local replicatedStorage = game:GetService("ReplicatedStorage")
 local remotes = replicatedStorage:WaitForChild("Remotes")
 
