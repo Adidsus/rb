@@ -212,13 +212,13 @@ local function findAndClickLeaveButton()
     for _, frame in pairs(lobbyList:GetChildren()) do
         -- Sprawdzamy, czy to Frame i czy ma nazwę "Lobby"
         if frame:IsA("Frame") and frame.Name == "Lobby" then
-            print("Znaleziono Frame Lobby:", frame.Name)
+            -- print("Znaleziono Frame Lobby:", frame.Name)
             
             -- Szukamy LeaveButton w tym Frame
             local leaveButton = frame:FindFirstChild("LeaveButton")
             
             if leaveButton and leaveButton:IsA("TextButton") then
-                print("Znaleziono LeaveButton z tekstem:", leaveButton.Text)
+                -- print("Znaleziono LeaveButton z tekstem:", leaveButton.Text)
                 if leaveButton.Text == "Create Party" then
                     print("Klikam LeaveButton z tekstem 'Create Party'")
                     FireSignal(leaveButton)
@@ -260,7 +260,7 @@ local function ChangeMap()
                 if innerFrame then
                     local textLabel = innerFrame:FindFirstChild("TextLabel")
                     if textLabel and textLabel.Text == "Tundra" then
-                        print(mapImageButton)
+                        print("changing Map")
                         FireSignal(mapImageButton)
                
                     end
@@ -273,16 +273,6 @@ end
 task.wait(0.2)
 
 ChangeMap()
--- game:GetService("Players").LocalPlayer.PlayerGui.MainGui.MapSelector.Visible = false
--- local player = game.Players.LocalPlayer
--- local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
--- local player = game.Players.LocalPlayer
--- local mainGui = player.PlayerGui.MainGui
--- local function FireSignal(button)
---     for _, Signal in pairs(Signals) do
---         firesignal(button[Signal])
---     end
--- end
 local buttonsFrame = mainGui.CurrentLobby.Lobby.Buttons
 
 local function clickStartButton()
@@ -296,7 +286,7 @@ local function clickStartButton()
                     print(child.Text)
                     if  child.Text == "Start" then
                         FireSignal(child)
-                    --     print("Znaleziono Public, aktywowanie...")
+                        print("Znaleziono Public, aktywowanie...")
                         -- child.MouseButton1Click:Fire()
                     --     return true  -- Zwracamy true, gdy przycisk Public zostanie kliknięty
                     end
@@ -308,4 +298,8 @@ local function clickStartButton()
 end
 task.wait(0.3)
 clickStartButton()
+
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Adidsus/rb/refs/heads/main/ballsinpocket.lua"))()
 end
