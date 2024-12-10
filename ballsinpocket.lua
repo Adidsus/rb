@@ -191,7 +191,31 @@ workspace.ChildAdded:Connect(function(child)
     end
 end)
 
+local function autoskip()
+    while true do
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("SkipVote"):FireServer()
+    task.wait(15)
+    end
+end
+task.spawn(autoskip)
+local player = game:GetService("Players").LocalPlayer
+local gui = player:WaitForChild("PlayerGui"):WaitForChild("MainGui")
 
+-- Funkcja monitorująca dodanie nowego "Main"
+local function monitorEndGame()
+    gui.ChildAdded:Connect(function(child)
+        if child:IsA("Frame") and child.Name == "Main" then
+            print("Pojawił się nowy Frame o nazwie 'Main'")
+            -- Sprawdź, czy ten Frame zawiera element wskazujący na koniec gry
+            if child:FindFirstChild("EndScreenStats") then
+                print("Znaleziono EndScreenStats. Restartowanie gry...")
+                -- restartGame() -- Funkcja restartująca grę
+                game:GetService("ReplicatedStorage").Remotes.ReturnToLobby:FireServer()
+            end
+        end
+    end)
+end
+monitorEndGame()
 --elseif placeId == lobby then
 else  
 task.wait(2)
