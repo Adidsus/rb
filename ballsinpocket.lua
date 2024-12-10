@@ -1,8 +1,8 @@
 local placeId = game.PlaceId -- Pobiera aktualne PlaceId gry
 local TheGame = 123456789
-local lobby = 18517861463
+local lobby = 18517861463  -- na odwrot te to jest game
 
-if placeId == TheGame then
+if placeId == lobby then
     task.wait(5)
    local replicatedStorage = game:GetService("ReplicatedStorage")
 local remotes = replicatedStorage:WaitForChild("Remotes")
