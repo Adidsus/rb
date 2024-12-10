@@ -297,5 +297,6 @@ local function clickStartButton()
     return false  -- Jeśli nie znaleziono Public
 end
 task.wait(0.3)
+   print("Starting")
 clickStartButton()
 end
