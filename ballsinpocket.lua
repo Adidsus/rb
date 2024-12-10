@@ -287,9 +287,9 @@ local function clickStartButton()
                     print("Znaleziono przycisk:", child.Name)  -- Sprawdzamy, który przycisk został znaleziony
                     print(child.Text)
                     if  child.Text == "Start" then
-                        FireSignal(child)
-                        print("Znaleziono Public, aktywowanie...")
-                        -- child.MouseButton1Click:Fire()
+                    --     FireSignal(child)
+                    --     print("Znaleziono Public, aktywowanie...")
+                        child.MouseButton1Click:Fire()
                     --     return true  -- Zwracamy true, gdy przycisk Public zostanie kliknięty
                     end
                 end
@@ -298,7 +298,8 @@ local function clickStartButton()
     end
     return false  -- Jeśli nie znaleziono Public
 end
-task.wait(0.3)
+-- task.wait(0.1)
+task.wait(0.1)
    print("Starting")
 clickStartButton()
 end
