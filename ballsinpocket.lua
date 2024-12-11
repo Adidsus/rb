@@ -148,7 +148,7 @@ local function upgradeTowers()
                     tower.currentUpgrade = tower.currentUpgrade + 1
 
                     upgradesMade = true
-                    task.wait(0.5) -- Czekaj przed kolejnym ulepszeniem
+                    task.wait(0.1) -- Czekaj przed kolejnym ulepszeniem
                     break -- Ulepsz tylko raz dla każdej wieży
                 end
             end
