@@ -279,7 +279,7 @@ local function FireSignal(button)
         firesignal(button[Signal])
     end
 end
-task.wait(0.8)
+task.wait(0.2)
 local function ChangeMap()
     local player = game.Players.LocalPlayer
     local mainGui = player.PlayerGui.MainGui
