@@ -3,7 +3,15 @@ local TheGame = 123456789
 local lobby = 18517861463  -- na odwrot te to jest game
 
 if placeId == lobby then
+        local players = game:GetService("Players")
+    local playerList = players:GetPlayers() -- Pobiera listę wszystkich graczy w grze
+
+    if #playerList > 1 then
+        game:GetService("ReplicatedStorage").Remotes.ReturnToLobby:FireServer()
+        print("ulla")
+    end
     task.wait(5)
+    
    local replicatedStorage = game:GetService("ReplicatedStorage")
 local remotes = replicatedStorage:WaitForChild("Remotes")
 
