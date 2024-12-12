@@ -23,9 +23,9 @@ task.wait(0.2)
 -- Lista wież do postawienia
 local towers = {
     {
-        id = "f4cdf3bc-4cb2-4140-85d7-fbbf24c0a5ee", -- Baller
-        position = Vector3.new(-1377.3726806640625, 3, 1218.69873046875),
-        uniqueId = "{7fd2813c-f664-4773-a176-31ccf4f9f6c2}",
+        id = "4ac5ce98-ae62-4bd7-9994-753f5486d77c", -- Baller
+        position = Vector3.new(-1387.157470703125, 3, 1233.898681640625),
+        uniqueId = "{af0ef0b6-8266-48a8-a194-14e5eba7181f}",
         towerIndex = 1,
         towerUpgradeNr = {2, 3, 4, 5, 6, 7, 8, 9},  -- Numerki ulepszeń
         costs = {2400, 5000, 10000, 50000, 125000, 250000, 350000, 500000}, -- Koszty ulepszeń
