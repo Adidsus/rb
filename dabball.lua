@@ -167,7 +167,7 @@ spawnTowers()  -- Stawianie wież
 task.wait(2)
 task.spawn(upgradeTowers)  -- Ulepszanie wież
 local args = {
-    [1] = 3
+    [1] = 2
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("SetSpeedUp"):FireServer(unpack(args))
