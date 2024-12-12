@@ -186,7 +186,7 @@ workspace.ChildAdded:Connect(function(child)
     if child.Name == "T0" and child:FindFirstChild("Root") then
         print("T0 znaleziony, przetwarzanie...")
         -- teleportPlayerTo(plr, child:FindFirstChild("Root"))
-
+        task.wait(1)
         for i, v in pairs(child:FindFirstChild("Root"):GetChildren()) do
             if v:IsA("ProximityPrompt") then
                 v.HoldDuration = 0.001
