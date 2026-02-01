@@ -96,6 +96,7 @@ function api.get_hwid()
     end
 
     api._cached_hwid = string.format("%08X", hash)
+    print(api._cached_hwid)
     return api._cached_hwid
 end
 
