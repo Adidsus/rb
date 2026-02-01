@@ -528,6 +528,10 @@ end
 if getgenv and getgenv().DefaultGui then
     api.LoadGUI = getgenv().DefaultGui
 end
+if getgenv and getgenv().getHWID then
+    api.hwid = getgenv().getHWID
+    print(api.hwid)
+end
 
 return api
 
