@@ -96,7 +96,7 @@ function api.get_hwid()
     end
 
     api._cached_hwid = string.format("%08X", hash)
-    print(api._cached_hwid)
+
     return api._cached_hwid
 end
 
@@ -165,10 +165,9 @@ function api.check_key(key)
     end
 
     local hwid = api.get_hwid()
-    print("apihwid", hwid)
 
     local url = string.format(
-        "%sverify?key=%s&hwid=%s&for=%s",
+        "%scheck?key=%s&hwid=%s&for=%s",
         api._api_url,
         key,
         hwid,
@@ -185,64 +184,56 @@ function api.check_key(key)
         }
     end
 
-    if response.valid then
-        return {
-            status = api.StatusCodes.KEY_VALID,
-            message = api.StatusMessages.KEY_VALID,
-            success = true,
-            data = {
-                hwid = response.hwid,
-                project_id = response.project_id,
-                project_name = response.project_name,
-                time_left_seconds = response.time_left_seconds,
-                expires = response.expires,
-            }
-        }
-    end
-
-    -- Mapuj bledy na StatusCodes
-    local error_msg = response.error or ""
-
-    if error_msg:find("Project not found") then
-        return {
-            status = api.StatusCodes.PROJECT_NOT_FOUND,
-            message = api.StatusMessages.PROJECT_NOT_FOUND,
-            success = false
-        }
-    elseif error_msg:find("Invalid key") or error_msg:find("Key not found") then
+    if not response.exists then
         return {
             status = api.StatusCodes.KEY_INCORRECT,
             message = api.StatusMessages.KEY_INCORRECT,
             success = false
         }
-    elseif error_msg:find("expired") then
+    end
+
+    if response.is_banned then
+        return {
+            status = api.StatusCodes.KEY_BANNED,
+            message = api.StatusMessages.KEY_BANNED,
+            success = false,
+            data = response
+        }
+    end
+
+    if response.is_expired then
         return {
             status = api.StatusCodes.KEY_EXPIRED,
             message = api.StatusMessages.KEY_EXPIRED,
-            success = false
+            success = false,
+            data = response
         }
-    elseif error_msg:find("HWID") then
+    end
+
+    if response.hwid ~= hwid and response.hwid ~= nil and response.hwid ~= "" then
         return {
             status = api.StatusCodes.KEY_HWID_LOCKED,
             message = api.StatusMessages.KEY_HWID_LOCKED,
             success = false,
-            data = {
-                hwid_reset_available = response.hwid_reset_available
-            }
-        }
-    elseif error_msg:find("banned") then
-        return {
-            status = api.StatusCodes.KEY_BANNED,
-            message = api.StatusMessages.KEY_BANNED,
-            success = false
-        }
-    else
-        return {
-            status = api.StatusCodes.UNKNOWN_ERROR,
-            message = error_msg ~= "" and error_msg or api.StatusMessages.UNKNOWN_ERROR,
-            success = false
+            data = response
         }
     end
+
+    return {
+        status = api.StatusCodes.KEY_VALID,
+        message = api.StatusMessages.KEY_VALID,
+        success = true,
+        data = {
+            exists = response.exists,
+            is_used = response.is_used,
+            is_expired = response.is_expired,
+            hwid = response.hwid,
+            time_left_seconds = response.time_left_seconds,
+            created = response.created,
+            last_used = response.last_used,
+            is_premium = response.is_premium,
+        }
+    }    
 end
 
 --[[
@@ -527,10 +518,6 @@ if getgenv and getgenv().SCRIPT_ID then
 end
 if getgenv and getgenv().DefaultGui then
     api.LoadGUI = getgenv().DefaultGui
-end
-if getgenv and getgenv().getHWID then
-    api.hwid = getgenv().getHWID
-    print("HWID użytkownika:", api.get_hwid())
 end
 
 return api
