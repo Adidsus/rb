@@ -530,7 +530,7 @@ if getgenv and getgenv().DefaultGui then
 end
 if getgenv and getgenv().getHWID then
     api.hwid = getgenv().getHWID
-    print(api.hwid)
+    print("HWID użytkownika:", api.get_hwid())
 end
 
 return api
